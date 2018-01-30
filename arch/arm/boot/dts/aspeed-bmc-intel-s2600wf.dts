@@ -5,7 +5,7 @@
 #include "aspeed-g5.dtsi"
 
 / {
-	model = "S2600WF BMC";
+	model = "TiogaPass BMC";
 	compatible = "intel,s2600wf-bmc", "aspeed,ast2500";
 
 	chosen {
@@ -64,6 +64,8 @@
 };
 
 &mac0 {
+	reg = <0x1e680000 0x180>;
+	interrupts = <3>;
 	status = "okay";
 
 	pinctrl-names = "default";
@@ -72,10 +74,13 @@
 };
 
 &mac1 {
+	reg = <0x1e660000 0x180>;
+	interrupts = <2>;
 	status = "okay";
 
 	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_rgmii2_default &pinctrl_mdio2_default>;
+	pinctrl-0 = <&pinctrl_rmii2_default>;
+	use-ncsi;
 };
 
 &i2c1 {
